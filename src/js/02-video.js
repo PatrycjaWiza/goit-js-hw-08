@@ -1,13 +1,11 @@
-// loadash throttle
-var _ = require('lodash');
-var loadashthrottle = require('lodash.throttle');
-
-// constants
-const iframe = document.querySelector('iframe');
+// Vimeo Player
+const iframe = document.querySelector('#vimeo-player');
 const player = new Vimeo.Player(iframe);
 
-// track currentTime with throttle = 1 sec
+// loadash
+var _ = require('lodash');
 
+// track currentTime with throttle = 1 sec
 player.on(
   'timeupdate',
   _.throttle(() => {
