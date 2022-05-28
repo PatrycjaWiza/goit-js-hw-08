@@ -21,12 +21,7 @@ const load = key => {
   }
 };
 //get data from form on input
-form.addEventListener(
-  'input',
-  _.throttle(() => {
-    saveInput();
-  }, 500),
-);
+form.addEventListener('input', _.throttle(saveInput, 500));
 //clear form & localStorage on submition
 form.addEventListener('submit', clear);
 
@@ -38,12 +33,16 @@ try {
   console.log('Local storage is empty:', error.message);
 }
 // setting to localStorage
-function saveInput(e) {
-  const { email, message } = e.currentTarget;
-  const object = { email: email.value, message: message.value };
-  save(LOCALSTORAGE_KEY, object);
-}
 
+function saveInput(e) {
+  try {
+    const { email, message } = e.currentTarget;
+    const object = { email: email.value, message: message.value };
+    save(LOCALSTORAGE_KEY, object);
+  } catch (error) {
+    console.log(error.message);
+  }
+}
 // clear localStorage & form and load data to console
 function clear(e) {
   e.preventDefault();
