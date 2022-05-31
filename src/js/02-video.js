@@ -20,17 +20,16 @@ player.on(
 );
 
 // setting currentTime
-player.on('play', function () {
-  const currentTime = localStorage.getItem('videoplayer-current-time');
+const currentTime = localStorage.getItem('videoplayer-current-time');
 
-  this.setCurrentTime(currentTime)
-    .then(function (seconds) {})
-    .catch(function (error) {
-      switch (error.name) {
-        case 'RangeError':
-          break;
-        default:
-          break;
-      }
-    });
-});
+player
+  .setCurrentTime(currentTime)
+  .then(function (seconds) {})
+  .catch(function (error) {
+    switch (error.name) {
+      case 'RangeError':
+        break;
+      default:
+        break;
+    }
+  });
